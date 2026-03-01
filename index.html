@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Asistencia</title>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo ITSON" class="logo">
+            <div class="titulo">
+                <span class="badge-campus">ITSON</span>
+                <h1>Sistema de Asistencia</h1>
+                <p>Control general de alumnos y sesiones</p>
+            </div>
+        </div>
+
+        <div class="acciones-superiores">
+            <button onclick="exportarExcel()" class="btn btn-ghost">
+                <i class="bi bi-file-earmark-spreadsheet"></i>
+                <span>Exportar Excel</span>
+            </button>
+            <button onclick="limpiarListaCompleta()" class="btn btn-danger">
+                <i class="bi bi-trash3"></i>
+                <span>Limpiar lista</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="metricas">
+        <article class="metrica-card">
+            <p>Alumnos registrados</p>
+            <strong id="metricAlumnos">0</strong>
+        </article>
+        <article class="metrica-card">
+            <p>Asistencias marcadas</p>
+            <strong id="metricAsistencias">0</strong>
+        </article>
+        <article class="metrica-card">
+            <p>Promedio general</p>
+            <strong id="metricPromedio">0%</strong>
+        </article>
+    </section>
+
+    <section class="formulario-card">
+        <div class="card-header">
+            <h2>Registrar alumno</h2>
+            <p>Captura datos y agregalo a la lista con un clic.</p>
+        </div>
+
+        <section class="formulario">
+            <label class="input-group" for="nombreAlumno">
+                <span>Nombre completo</span>
+                <div class="input-shell">
+                    <i class="bi bi-person"></i>
+                    <input type="text" id="nombreAlumno" placeholder="Ej. Juan Perez Lopez">
+                </div>
+            </label>
+
+            <label class="input-group" for="correoAlumno">
+                <span>Correo institucional</span>
+                <div class="input-shell">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" id="correoAlumno" placeholder="Ej. a123456@potros.itson.edu.mx">
+                </div>
+            </label>
+
+            <label class="input-group" for="matriculaAlumno">
+                <span>Matricula</span>
+                <div class="input-shell">
+                    <i class="bi bi-card-heading"></i>
+                    <input type="text" id="matriculaAlumno" placeholder="Ej. 201900123">
+                </div>
+            </label>
+
+            <button onclick="agregarAlumno()" class="btn btn-primary">
+                <i class="bi bi-person-plus"></i>
+                <span>Agregar alumno</span>
+            </button>
+        </section>
+    </section>
+
+    <section class="tabla-container">
+        <div class="card-header card-header-table">
+            <h2>Lista general</h2>
+            <p id="lastUpdateText">Sin cambios recientes</p>
+        </div>
+        <table id="tablaAsistencia">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Matricula</th>
+                    <th>Historial</th>
+                    <th>Marcar</th>
+                    <th>%</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
